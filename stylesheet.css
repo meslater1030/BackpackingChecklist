@@ -1,0 +1,168 @@
+* {
+  padding:0em;
+  margin:0em;
+  background-color: white;
+  width: auto;
+  font-family: sans-serif;
+}
+
+body {
+  background-image: url('http://upload.wikimedia.org/wikipedia/commons/7/7e/St_Mary_Lake.jpg');
+  background-attachment:fixed;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  font-size: 4em;
+  font-weight: bolder;
+  background-color:transparent;
+  font-family: 'Oswald', sans-serif;
+}
+
+p {
+  font-size:1.2em;
+  background-color: transparent;
+}
+
+li img {
+  width:250px;
+  height:200px;
+  border-radius: 15px;
+  display: inline;
+}
+
+ul {
+  list-style-type:none; 
+}
+
+button {
+  font-size: 2em;
+  font-family: 'Oswald', sans-serif;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 12em;
+}
+
+.location {
+  height: auto;
+  right:0;
+  bottom:0;
+  padding:1em;
+  text-align:center;
+  font-family:arial;
+}
+
+.wordOverlay {
+  position:relative;
+  width: 100%;
+  display: inline;
+}
+
+.wordOverlay p {
+  position:absolute;
+  top:-10px;
+  left:0;
+  width: 100%;
+  font-size:1em;
+  color: white;
+  background-color: transparent;
+}
+
+.chooseItems ul li button {
+  text-align: left;
+}
+.chooseItems ul ul li {
+  position:relative;
+  width: 100%;
+  display: inline;
+  text-align: center;
+}
+
+.chooseItems ul ul li p {
+  position:absolute;
+  font-weight: bold;
+  top:-6em;
+  left:0;
+  width: 100%;
+  font-size:1em;
+  color: black;
+  background-color: transparent;
+}
+
+.photoWindow {
+  height: auto;
+  color:white;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+  background-color: transparent;
+  text-align:center;
+  font-family: 'Oswald', sans-serif;
+  padding: 1.2em;
+}
+
+.chooseItems {
+  padding: 1em
+}
+
+.chooseItems img {
+  border: 1px solid black;
+}
+
+.chooseItems ul li button img {
+  width: 28px;
+  height: 28px;
+  border: none;
+}
+
+.chooseItems p {
+  text-align: center;
+}
+
+.itemsChosen {
+  width: 15em;
+  padding: 1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  background-color:#d3d3d3;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+  float: right;
+  display: inline; 
+}
+
+.itemsChosen p {
+  background-color:#d3d3d3;
+}
+
+.itemsChosen table tr td {
+  background-color:#d3d3d3;
+  font-size: 1em;
+  border: 7px solid #d3d3d3;
+}
+
+.findOut button {
+  float:left;
+  display: inline;
+  width: 15em;
+  margin-right: 5em;
+  font-family: 'Oswald', sans-serif;
+  width: 6em;
+  border-radius: 8px;
+  font-size: 2em;
+  box-shadow: 2px 2px 4px 5px #ccc;
+  margin-left: 2em;
+  margin-bottom: 1em;
+}
+
+.submit {
+  height: auto;
+  padding-top: 2em;
+  padding-bottom: 3em;
+} 
+
+
