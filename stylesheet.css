@@ -1,11 +1,13 @@
+/*This removes all the padding from the page so that the background photo
+only shows where I want it.  It also sets a default font and background color. */
 * {
   padding:0em;
   margin:0em;
-  background-color: white;
   width: auto;
   font-family: sans-serif;
+  background-color: white;
 }
-
+/*this attaches a large background image to the page that doesn't scroll */
 body {
   background-image: url('http://upload.wikimedia.org/wikipedia/commons/7/7e/St_Mary_Lake.jpg');
   background-attachment:fixed;
@@ -23,18 +25,18 @@ p {
   font-size:1.2em;
   background-color: transparent;
 }
-
-li img {
+img {
   width:250px;
   height:200px;
   border-radius: 15px;
   display: inline;
+  border: 1px solid black;
 }
-
+/*This removes all bullets from unordered lists*/
 ul {
   list-style-type:none; 
 }
-
+/*This makes all the buttons big with a fun font and adds padding*/
 button {
   font-size: 2em;
   font-family: 'Oswald', sans-serif;
@@ -44,22 +46,21 @@ button {
   padding-right: 1em;
   width: 12em;
 }
-
+/*The top section of the page is called location.  This centers the text and adds padding.*/
 .location {
   height: auto;
-  right:0;
-  bottom:0;
   padding:1em;
   text-align:center;
-  font-family:arial;
 }
-
+/*This positions the photos in the top section of the page so that they appear in rows
+and sets up the position for the next element. */
 .wordOverlay {
   position:relative;
   width: 100%;
   display: inline;
 }
-
+/*this puts the text associated with the park and puts it on top of the 
+picture of that park */
 .wordOverlay p {
   position:absolute;
   top:-10px;
@@ -79,7 +80,8 @@ button {
   display: inline;
   text-align: center;
 }
-
+/* this puts the text associated with the supply and puts it on top of the picture of 
+that supply */
 .chooseItems ul ul li p {
   position:absolute;
   font-weight: bold;
@@ -90,7 +92,8 @@ button {
   color: black;
   background-color: transparent;
 }
-
+/*This creates a hole in the page so you can see the background photo through it.
+It also essentially adds a border around the text so that text stands out */
 .photoWindow {
   height: auto;
   color:white;
@@ -108,21 +111,14 @@ button {
 .chooseItems {
   padding: 1em
 }
-
-.chooseItems img {
-  border: 1px solid black;
-}
-
+/*This decreases the size of the plus image and removes the default border for images.*/
 .chooseItems ul li button img {
   width: 28px;
   height: 28px;
   border: none;
 }
-
-.chooseItems p {
-  text-align: center;
-}
-
+/*This positions the aside on the right of the page and gives it some padding
+ and a border*/
 .itemsChosen {
   width: 15em;
   padding: 1em;
@@ -139,12 +135,18 @@ button {
   background-color:#d3d3d3;
 }
 
+.itemsChosen table {
+  background-color: #d3d3d3;
+  border: 1px solid black;
+}
+
 .itemsChosen table tr td {
   background-color:#d3d3d3;
   font-size: 1em;
   border: 7px solid #d3d3d3;
 }
-
+/*This makes the submit button fancy and a different size than the default button. 
+It also places it on the left of the page so results are posted to the right. */
 .findOut button {
   float:left;
   display: inline;

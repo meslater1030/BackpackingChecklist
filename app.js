@@ -1,17 +1,16 @@
 $(document).ready(function(){
-
+//I'm declaring the park and supply objects
     var Park = function(danger) {
       this.danger=danger;
-    };
-
-    var Supply = function(usefulness, cost) {
+    },
+    Supply = function(usefulness, cost) {
       this.usefulness = usefulness;
       this.cost = cost;
-    };
-
-    var yellowstonePark = new Park(40),
+    },
+//Here are all the parks and all the supplies
+    yellowstonePark = new Park(40),
     glacierPark = new Park(35),
-    olympicPark = new Park(25);
+    olympicPark = new Park(25),
     yosemitePark = new Park(20),
     grandCanyonPark = new Park(45),
     zionPark = new Park(45),
@@ -39,9 +38,9 @@ $(document).ready(function(){
     tarpSupply = new Supply(5,69.95),
     blanketSupply = new Supply(4,16.95),
     parkDanger = 1,
-    totalCost = 0;
-
-    var $hideParks = function(){
+    totalCost = 0,
+//this jquery hides all the park options
+    $hideParks = function(){
       $('#yellowstone').hide();
       $("#glacier").hide();
       $('#olympic').hide();
@@ -50,7 +49,8 @@ $(document).ready(function(){
       $('#zion').hide();
       $('.wordOverlay').hide();
     };
-
+//When you click on the photo of a park, that park appears
+//in the aside and all parks disapper so no more parks can be chosen.
     $('#yellowstone').click(function(){
       $('.destination').append('<p>Yellowstone National Park</p>');
       $hideParks();
@@ -81,7 +81,9 @@ $(document).ready(function(){
       $hideParks();
       parkDanger = zionPark.danger;
     });
-
+//When you click on a supply that supply and its cost will appear in 
+//the aside.  Its cost will be added to the total cost.  Its usefullness
+//will be subtracted from the danger of the park.
     $('#mapsPhoto').click(function(){
       $('#supplies').append('<tr><td>Trail Map</td><td>$20.95</td></tr>');
       parkDanger -= mapSupply.usefulness;
@@ -197,7 +199,7 @@ $(document).ready(function(){
       parkDanger -= blanketSupply.usefulness;
       totalCost += blanketSupply.usefulness;
     });
-
+//These hide all of the descriptions of supplies when the page loads
     $('#maps').hide();
     $('#compass').hide();
     $('#gps').hide();
@@ -221,7 +223,7 @@ $(document).ready(function(){
     $('#tent').hide();
     $('#tarp').hide();
     $('#blanket').hide();
-
+//These hide all the list items under each main item when the page loads
     $('.navigation').hide();
     $('.sunProtection').hide();
     $('.insulation').hide();
@@ -232,7 +234,7 @@ $(document).ready(function(){
     $('.nutrition').hide();
     $('.hydration').hide();
     $('.shelter').hide();
-
+//This opens each menu item when you click on it to see the supplies in that category
     $('.navigationHead').click(function(){
       $('.navigation').toggle();
     });
@@ -272,7 +274,8 @@ $(document).ready(function(){
       $('#mapsPhoto').fadeTo('fast',1);
       $('#maps').hide();
     });
-
+//These show the description and hide the photo of each supply when you put the mouse over it
+//and remove that description and show the photo when you remove the mouse
     $('#compassPhoto').mouseenter(function(){
       $('#compassPhoto').fadeTo('fast',0);
       $('#compass').show();
@@ -470,7 +473,8 @@ $(document).ready(function(){
       $('#blanketPhoto').fadeTo('fast',1);
       $('#blanket').hide();
     });
-
+//This lets you know whether the combined usefulness of the supplies is greater than
+//the danger of the park and tells you the outcome when you push the button.
     $('.findOut').click(function(){
       if(parkDanger>0) {
         $('.result').append('<p>No, you will not survive.  Please buy more supplies.</p>')
