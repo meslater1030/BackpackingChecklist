@@ -3,202 +3,55 @@ $(document).ready(function(){
     var Park = function(danger) {
       this.danger=danger;
     },
-    Supply = function(usefulness, cost) {
+    Supply = function(usefulness, cost, name) {
       this.usefulness = usefulness;
       this.cost = cost;
+      this.name = name;
+      this.addSupply = function(){
+        totalCost += cost;
+        totalUsefulness += usefulness;
+      };
+      this.deleteSupply = function(){
+        totalCost -= cost;
+        totalUsefulness -= usefulness;
+      }; 
     },
 //Here are all the parks and all the supplies
-    yellowstonePark = new Park(40),
-    glacierPark = new Park(35),
-    olympicPark = new Park(25),
-    yosemitePark = new Park(20),
-    grandCanyonPark = new Park(45),
-    zionPark = new Park(45),
-    mapSupply = new Supply(2,20.95),
-    compassSupply = new Supply(4,35),
-    gpsSupply = new Supply(6,600),
-    sunscreenSupply = new Supply(3,12),
-    lipBalmSupply = new Supply(1,3.50),
-    sunglassesSupply = new Supply(1,150),
-    jacketSupply = new Supply(4,148.83),
-    pantsSupply = new Supply(3,148.93),
-    glovesSupply = new Supply(2,36.83),
-    hatSupply = new Supply(4,36),
-    flashlightSupply = new Supply(3,70.93),
-    batteriesSupply = new Supply(1,21),
-    firstAidSupply = new Supply(10,54.50),
-    matchesSupply = new Supply(5,6.95),
-    firestarterSupply = new Supply(3,32.95),
-    leathermanSupply = new Supply(5,89.95),
-    tapeSupply = new Supply(2,10),
-    foodSupply = new Supply(10,90),
-    waterBottleSupply = new Supply(3, 10.5),
-    filterSupply = new Supply(6,84.95),
-    tentSupply = new Supply(7,199.93),
-    tarpSupply = new Supply(5,69.95),
-    blanketSupply = new Supply(4,16.95),
-    parkDanger = 1,
+    yellowstone = new Park(40),
+    glacier = new Park(35),
+    olympic = new Park(25),
+    yosemite = new Park(20),
+    grandCanyon = new Park(45),
+    zion = new Park(45),
+    map = new Supply(2,20.95,'Trail Map'),
+    compass = new Supply(4,35, 'Compass'),
+    gps = new Supply(6,600, 'GPS Watch'),
+    sunscreen = new Supply(3,12, 'Sunscreen'),
+    lipBalm = new Supply(1,3.50, 'Lip Balm'),
+    sunglasses = new Supply(1,150, 'Sunglasses'),
+    jacket = new Supply(4,148.83, 'Jacket'),
+    pants = new Supply(3,148.93, 'Pants'),
+    gloves = new Supply(2,36.83, 'Gloves'),
+    hat = new Supply(4,36, 'Hat'),
+    flashlight = new Supply(3,70.93,'Flashlight'),
+    battery = new Supply(1,21,'Extra Batteries'),
+    firstAid = new Supply(10,54.50, "First Aid Kit"),
+    matches = new Supply(5,6.95,'Matches'),
+    firestarter = new Supply(3,32.95, 'Firestarter'),
+    multitool = new Supply(5,89.95, 'Leatherman'),
+    tape = new Supply(2,10,'Duct Tape'),
+    food = new Supply(10,90, 'Extra Food'),
+    waterBottle = new Supply(3, 10.5,'Water Bottle'),
+    filter = new Supply(6,84.95, 'Water Filter'),
+    tent = new Supply(7,199.93, 'Tent'),
+    tarp = new Supply(5,69.95, 'Tarp'),
+    blanket = new Supply(4,16.95, 'Space Blanket'),
+//We will need these values as global variables for later calculations
+    totalUsefulness = 0,
     totalCost = 0,
-//this jquery hides all the park options
-    $hideParks = function(){
-      $('#yellowstone').hide();
-      $("#glacier").hide();
-      $('#olympic').hide();
-      $('#yosemite').hide();
-      $('#grandCanyon').hide();
-      $('#zion').hide();
-      $('.wordOverlay').hide();
-    };
-//When you click on the photo of a park, that park appears
-//in the aside and all parks disapper so no more parks can be chosen.
-    $('#yellowstone').click(function(){
-      $('.destination').append('<p>Yellowstone National Park</p>');
-      $hideParks();
-      parkDanger = yellowstonePark.danger;
-    });
-    $('#glacier').click(function(){
-      $('.destination').append('<p>Glacier National Park</p>');
-      $hideParks();
-      parkDanger = glacierPark.danger;
-    });
-    $('#olympic').click(function(){
-      $('.destination').append('<p>Olympic National Forest</p>');
-      $hideParks();
-      parkDanger = olympicPark.danger;
-    });
-    $('#yosemite').click(function(){
-      $('.destination').append('<p>Yosemite National Park</p>');
-      $hideParks();
-      parkDanger = yosemitePark.danger;
-    });
-    $('#grandCanyon').click(function(){
-      $('.destination').append('<p>The Grand Canyon</p>');
-      $hideParks();
-      parkDanger = grandCanyonPark.danger;   
-    });
-    $('#zion').click(function(){
-      $('.destination').append('<p>Zion National Park</p>');
-      $hideParks();
-      parkDanger = zionPark.danger;
-    });
-//When you click on a supply that supply and its cost will appear in 
-//the aside.  Its cost will be added to the total cost.  Its usefullness
-//will be subtracted from the danger of the park.
-    $('#mapsPhoto').click(function(){
-      $('#supplies').append('<tr><td>Trail Map</td><td>$20.95</td></tr>');
-      parkDanger -= mapSupply.usefulness;
-      totalCost += mappSupply.cost;
-    });
-    $('#compassPhoto').click(function(){
-      $('#supplies').append('<tr><td>Compass</td><td>$35.00</td></tr>');
-      parkDanger -= compassSupply.usefulness;
-      totalCost += compassSupply.cost;
-    });
-    $('#gpsPhoto').click(function(){
-      $('#supplies').append('<tr><td>GPS Watch</td><td>$600.00</td></tr>');
-      parkDanger -= gpsSupply.usefulness;
-      totalCost += gpsSupply.cost;
-    });
-    $('#sunscreenPhoto').click(function(){
-      $('#supplies').append('<tr><td>Sunscreen</td><td>$12.00</td></tr>');
-      parkDanger -= sunscreenSupply.usefulness;
-      totalCost += sunscreenSupply.cost;
-    });
-    $('#lipBalmPhoto').click(function(){
-      $('#supplies').append('<tr><td>SPF 30 Lip Balm</td><td>$3.50</td></tr>');
-      parkDanger -= lipBalmSupply.usefulness;
-      totalCost += lipBalmSupply.cost;
-    });
-    $('#sunglassesPhoto').click(function(){
-      $('#supplies').append('<tr><td>Sunglasses</td><td>$150.00</td></tr>');
-      parkDanger -= sunglassesSupply.usefulness;
-      totalCost += sunglassesSupply.cost;
-    });
-    $('#jacketPhoto').click(function(){
-      $('#supplies').append('<tr><td>Jacket</td><td>$148.83</td></tr>');
-      parkDanger -= jacketSupply.usefulness;
-      totalCost += jacketSupply.cost;
-    });
-    $('#pantsPhoto').click(function(){
-      $('#supplies').append('<tr><td>Snow Pants</td><td>$148.93</td></tr>');
-      parkDanger -= pantsSupply.usefulness;
-      totalCost += pantsSupply.cost;
-    });
-    $('#glovesPhoto').click(function(){
-      $('#supplies').append('<tr><td>Gloves</td><td>$36.83</td></tr>');
-      parkDanger -= glovesSupply.usefulness;
-      totalCost += glovesSupply.cost;
-    });
-    $('#hatPhoto').click(function(){
-      $('#supplies').append('<tr><td>Hat</td><td>$36.00</td></tr>');
-      parkDanger -= hatSupply.usefulness;
-      totalCost += hatSupply.cost;
-    });
-    $('#flashlightPhoto').click(function(){
-      $('#supplies').append('<tr><td>Flashlight</td><td>$70.93</td></tr>');
-      parkDanger -= flashlightSupply.usefulness;
-      totalCost += flashlightSupply.cost;
-    });
-    $('#batteryPhoto').click(function(){
-      $('#supplies').append('<tr><td>Extra Batteries</td><td>$21.00</td></tr>');
-      parkDanger -= batterySupply.usefulness;
-      totalCost += batterySupply.cost;
-    });
-    $('#firstAidPhoto').click(function(){
-      $('#supplies').append('<tr><td>First Aid Kit</td><td>$54.50</td></tr>');
-      parkDanger -= firstAidSupply.usefulness;
-      totalCost += firstAidSupply.cost;
-    });
-    $('#matchesPhoto').click(function(){
-      $('#supplies').append('<tr><td>Matches</td><td>$6.95</td></tr>');
-      parkDanger -= matchesSupply.usefulness;
-      totalCost += matchesSupply.cost;
-    });
-    $('#firestarterPhoto').click(function(){
-      $('#supplies').append('<tr><td>Firestarter</td><td>$32.95</td></tr>');
-      parkDanger -= firestarterSupply.usefulness;
-      totalCost += firestarterSupply.cost;
-    });
-    $('#multitoolPhoto').click(function(){
-      $('#supplies').append('<tr><td>Leatherman</td><td>$89.95</td></tr>');
-      parkDanger -= multitoolSupply.usefulness;
-      totalCost += multitoolSupply.cost;
-    });
-    $('#tapePhoto').click(function(){
-      $('#supplies').append('<tr><td>Duct Tape</td><td>$10.00</td></tr>');
-      parkDanger -= tapeSupply.usefulness;
-      totalCost += tapeSupply.cost;
-    });
-    $('#foodPhoto').click(function(){
-      $('#supplies').append('<tr><td>Food</td><td>$90.00</td></tr>');
-      parkDanger -= foodSupply.usefulness;
-      totalCost += foodSupply.cost;
-    });
-    $('#waterBottlePhoto').click(function(){
-      $('#supplies').append('<tr><td>Water Bottle</td><td>$10.50</td></tr>');
-      parkDanger -= waterBottleSupply.usefulness;
-      totalCost += waterBottleSupply.usefulness;
-    });
-    $('#filterPhoto').click(function(){
-      $('#supplies').append('<tr><td>Water Filter</td><td>$84.95</td></tr>');
-      parkDanger -= filterSupply.usefulness;
-      totalCost += filterSupply.usefulness;
-    });
-    $('#tentPhoto').click(function(){
-      $('#supplies').append('<tr><td>Tent</td><td>$199.93</td></tr>');
-      parkDanger -= tentSupply.usefulness;
-      totalCost += tentSupply.usefulness;
-    });    
-    $('#tarpPhoto').click(function(){
-      $('#supplies').append('<tr><td>Tarp</td><td>$69.95</td>');
-      parkDanger -= tarpSupply.usefulness;
-      totalCost +=  tarpSupply.usefulness;
-    });
-    $('#blanketPhoto').click(function(){
-      $('#supplies').append('<tr><td>Space Blanket</td><td>$16.95</td></tr>');
-      parkDanger -= blanketSupply.usefulness;
-      totalCost += blanketSupply.usefulness;
-    });
+    parkDanger = 1,
+    budget = 0;
+
 //These hide all of the descriptions of supplies when the page loads
     $('#maps').hide();
     $('#compass').hide();
@@ -223,6 +76,7 @@ $(document).ready(function(){
     $('#tent').hide();
     $('#tarp').hide();
     $('#blanket').hide();
+    $('.itemsChosen').hide();
 //These hide all the list items under each main item when the page loads
     $('.navigation').hide();
     $('.sunProtection').hide();
@@ -234,252 +88,538 @@ $(document).ready(function(){
     $('.nutrition').hide();
     $('.hydration').hide();
     $('.shelter').hide();
-//This opens each menu item when you click on it to see the supplies in that category
-    $('.navigationHead').click(function(){
-      $('.navigation').toggle();
+
+//When you click on the photo of a park, that park appears
+//in the figure which slides down if it isn't already down.
+//that danger also now becomes the park danger.
+    $('#yellowstone').click(function(){
+      $('.destination').replaceWith('<p class="destination">Yellowstone National Park</p>');
+      $('.itemsChosen').slideDown();
+      parkDanger = yellowstone.danger;
     });
-    $('.sunProtectionHead').click(function(){
-      $('.sunProtection').toggle();
+    $('#glacier').click(function(){
+      $('.destination').replaceWith('<p class="destination">Glacier National Park</p>');
+      $('.itemsChosen').slideDown();
+      parkDanger = glacier.danger;
     });
-    $('.insulationHead').click(function(){
-      $('.insulation').toggle();
+    $('#olympic').click(function(){
+      $('.destination').replaceWith('<p class="destination">Olympic National Forest</p>');
+      $('.itemsChosen').slideDown();
+      parkDanger = olympic.danger;
     });
-    $('.illuminationHead').click(function(){
-      $('.illumination').toggle();
+    $('#yosemite').click(function(){
+      $('.destination').replaceWith('<p class="destination">Yosemite National Park</p>');
+      $('.itemsChosen').slideDown();
+      parkDanger = yosemite.danger;
     });
-    $('.firstAidSuppliesHead').click(function(){
-      $('.firstAidSupplies').toggle();
+    $('#grandCanyon').click(function(){
+      $('.destination').replaceWith('<p class="destination">The Grand Canyon</p>');
+      $('.itemsChosen').slideDown();
+      parkDanger = grandCanyon.danger;   
     });
-    $('.fireHead').click(function(){
-      $('.fire').toggle();
+    $('#zion').click(function(){
+      $('.destination').replaceWith('<p class="destination">Zion National Park</p>');
+      $('.itemsChosen').slideDown();
+      parkDanger = zion.danger;
     });
-    $('.toolsHead').click(function(){
-      $('.tools').toggle();
+//This takes user input from our form and uses it to update the budget and subtotal
+$('#userMoney').submit(function(event) {
+  event.preventDefault();
+  budget = $(':input').val();
+  updateSubtotal();
+});
+//This updates the subtotal to the current subtotal
+var updateSubtotal = function(){
+  $('#subtotal').replaceWith('<td id="subtotal">$'+(budget-totalCost).toFixed(2)+'</td>');
+};
+
+/*When you click on a supply that supply and its cost will appear in 
+the aside.  Its cost will be added to the total cost.  Its usefullness
+will be subtracted from the danger of the park.  We also add a click event handler
+to the newly added supply so that it can be deleted if necessary.  That event handler
+has to be removed and then added so that it's not added multiple times if the user adds 
+multiples of one supply. */
+    $('#mapsPhoto').click(function(){
+      $('#supplies').append('<tr class="mapRow"><td>'+map.name+'</td><td>$'+(map.cost).toFixed(2)+'</td><td><img src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.mapRow').off();
+      $('.mapRow').on('click', function(){
+        (this).remove();
+        map.deleteSupply();
+        updateSubtotal();
+      }); 
+      map.addSupply();
+      updateSubtotal();
     });
-    $('.nutritionHead').click(function(){
-      $('.nutrition').toggle();
+    $('#compassPhoto').click(function(){
+      $('#supplies').append('<tr class="compassRow"><td>'+compass.name+'</td><td>$'+(compass.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.compassRow').off();
+      $('.compassRow').on('click', function(){
+        (this).remove();
+        compass.deleteSupply();
+        updateSubtotal();
+      }); 
+      compass.addSupply();
+      updateSubtotal();
     });
-    $('.hydrationHead').click(function(){
-      $('.hydration').toggle();
+    $('#gpsPhoto').click(function(){
+      $('#supplies').append('<tr class="gpsRow"><td>'+gps.name+'</td><td>$'+(gps.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.gpsRow').off();
+      $('.gpsRow').on('click', function(){
+        (this).remove();
+        gps.deleteSupply();
+        updateSubtotal();
+      }); 
+      gps.addSupply();
+      updateSubtotal();
     });
-    $('.shelterHead').click(function(){
-      $('.shelter').toggle();
+    $('#sunscreenPhoto').click(function(){
+      $('#supplies').append('<tr class="sunscreenRow"><td>'+sunscreen.name+'</td><td>$'+(sunscreen.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.sunscreenRow').off();
+      $('.sunscreenRow').on('click', function(){
+        (this).remove();
+        sunscreen.deleteSupply();
+        updateSubtotal();
+      }); 
+      sunscreen.addSupply();
+      updateSubtotal();
+    });
+    $('#lipBalmPhoto').click(function(){
+      $('#supplies').append('<tr class="lipBalmRow"><td>'+lipBalm.name+'</td><td>$'+(lipBalm.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.lipBalmRow').off();
+      $('.lipBalmRow').on('click', function(){
+        (this).remove();
+        lipBalm.deleteSupply();
+        updateSubtotal();
+      }); 
+      lipBalm.addSupply();
+      updateSubtotal();
+    });
+    $('#sunglassesPhoto').click(function(){
+      $('#supplies').append('<tr class="sunglassesRow"><td>'+sunglasses.name+'</td><td>$'+(sunglasses.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.sunglassesRow').off();
+      $('.sunglassesRow').on('click', function(){
+        (this).remove();
+        sunglasses.deleteSupply();
+        updateSubtotal();
+      }); 
+      sunglasses.addSupply();
+      updateSubtotal();
+    });
+    $('#jacketPhoto').click(function(){
+      $('#supplies').append('<tr class="jacketRow"><td>'+jacket.name+'</td><td>$'+(jacket.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.jacketRow').off();
+      $('.jacketRow').on('click', function(){
+        (this).remove();
+        jacket.deleteSupply();
+        updateSubtotal();
+      }); 
+      jacket.addSupply();
+      updateSubtotal();
+    });
+    $('#pantsPhoto').click(function(){
+      $('#supplies').append('<tr class="pantsRow"><td>'+pants.name+'</td><td>$'+(pants.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.pantsRow').off();
+      $('.pantsRow').on('click', function(){
+        (this).remove();
+        pants.deleteSupply();
+        updateSubtotal();
+      }); 
+      pants.addSupply();
+      updateSubtotal();
+    });
+    $('#glovesPhoto').click(function(){
+      $('#supplies').append('<tr class="glovesRow"><td>'+gloves.name+'</td><td>$'+(gloves.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.glovesRow').off();
+      $('.glovesRow').on('click', function(){
+        (this).remove();
+        gloves.deleteSupply();
+        updateSubtotal();
+      }); 
+      gloves.addSupply();
+      updateSubtotal();
+    });
+    $('#hatPhoto').click(function(){
+      $('#supplies').append('<tr class="hatRow"><td>'+hat.name+'</td><td>$'+(hat.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.hatRow').off();
+      $('.hatRow').on('click', function(){
+        (this).remove();
+        hat.deleteSupply();
+        updateSubtotal();
+        }); 
+      hat.addSupply();
+      updateSubtotal();
+    });
+    $('#flashlightPhoto').click(function(){
+      $('#supplies').append('<tr class="flashlightRow"><td>'+flashlight.name+'</td><td>$'+(flashlight.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.flashlightRow').off();
+      $('.flashlightRow').on('click', function(){
+        (this).remove();
+        flashlight.deleteSupply();
+        updateSubtotal();
+      }); 
+      flashlight.addSupply();
+      updateSubtotal();
+    });
+    $('#batteryPhoto').click(function(){
+      $('#supplies').append('<tr class="batteryRow"><td>'+battery.name+'</td><td>$'+(battery.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.batteryRow').off();
+      $('.batteryRow').on('click', function(){
+        (this).remove();
+        battery.deleteSupply();
+        updateSubtotal();
+      }); 
+      battery.addSupply();
+      updateSubtotal();
+    });
+    $('#firstAidPhoto').click(function(){
+      $('#supplies').append('<tr class="firstAidRow"><td>'+firstAid.name+'</td><td>$'+(firstAid.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.firstAidRow').off();
+      $('.firstAidRow').on('click', function(){
+        (this).remove();
+        firstAid.deleteSupply();
+        updateSubtotal();
+        }); 
+      firstAid.addSupply();
+      updateSubtotal();
+    });
+    $('#matchesPhoto').click(function(){
+      $('#supplies').append('<tr class="matchesRow"><td>'+matches.name+'</td><td>$'+(matches.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.matchesRow').off();
+      $('.matchesRow').on('click', function(){
+        (this).remove();
+        matches.deleteSupply();
+        updateSubtotal();
+        }); 
+      matches.addSupply();
+      updateSubtotal();
+    });
+    $('#firestarterPhoto').click(function(){
+      $('#supplies').append('<tr class="firestarterRow"><td>'+firestarter.name+'</td><td>$'+(firestarter.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.firestarterRow').off();
+      $('.firestarterRow').on('click', function(){
+        (this).remove();
+        firestarter.deleteSuply();
+        updateSubtotal();
+      }); 
+      firestarter.addSupply();
+      updateSubtotal();
+    });
+    $('#multitoolPhoto').click(function(){
+      $('#supplies').append('<tr class="multitoolRow"><td>'+multitool.name+'</td><td>$'+(multitool.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.multitoolRow').off();
+      $('.multitoolRow').on('click', function(){
+        (this).remove();
+        multitool.deleteSupply();
+        updateSubtotal();
+      }); 
+      multitool.addSupply();
+      updateSubtotal();
+    });
+    $('#tapePhoto').click(function(){
+      $('#supplies').append('<tr class="tapeRow"><td>'+tape.name+'</td><td>$'+(tape.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.tapeRow').off();
+      $('.tapeRow').on('click', function(){
+        (this).remove();
+        tape.deleteSupply();
+        updateSubtotal();
+      }); 
+      tape.addSupply();
+      updateSubtotal();
+    });
+    $('#foodPhoto').click(function(){
+      $('#supplies').append('<tr class="foodRow"><td>'+food.name+'</td><td>$'+(food.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.foodRow').off();
+      $('.foodRow').on('click', function(){
+        (this).remove();
+        food.deleteSupply();
+        updateSubtotal();
+      }); 
+      food.addSupply();
+      updateSubtotal();
+    });
+    $('#waterBottlePhoto').click(function(){
+      $('#supplies').append('<tr class="waterBottleRow"><td>'+waterBottle.name+'</td><td>$'+(waterBottle.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.waterBottleRow').off();
+      $('.waterBottleRow').on('click', function(){
+        (this).remove();
+        waterBottle.deleteSupply();
+        updateSubtotal();
+      }); 
+      waterBottle.addSupply();
+      updateSubtotal();
+    });
+    $('#filterPhoto').click(function(){
+      $('#supplies').append('<tr class="filterRow"><td>'+filter.name+'</td><td>$'+(filter.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.filterRow').off();
+      $('.filterRow').on('click', function(){
+        (this).remove();
+        filter.deleteSupply();
+        updateSubtotal();
+      }); 
+      filter.addSupply();
+      updateSubtotal();
+    });
+    $('#tentPhoto').click(function(){
+      $('#supplies').append('<tr class="tentRow"><td>'+tent.name+'</td><td>$'+(tent.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.tentRow').off();
+      $('.tentRow').on('click', function(){
+        (this).remove();
+        tent.deleteSupply();
+        updateSubtotal();
+      }); 
+      tent.addSupply();
+      updateSubtotal();
+    });    
+    $('#tarpPhoto').click(function(){
+      $('#supplies').append('<tr class="tarpRow"><td>'+tarp.name+'</td><td>$'+(tarp.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.tarpRow').off();
+      $('.tarpRow').on('click', function(){
+        (this).remove();
+        tarp.deleteSupply();
+        updateSubtotal();
+      }); 
+      tarp.addSupply();
+      updateSubtotal();
+    });
+    $('#blanketPhoto').click(function(){
+      $('#supplies').append('<tr class="blanketRow"><td>'+blanket.name+'</td><td>$'+(blanket.cost).toFixed(2)+'</td><td><img class="deleteSupply" src="http://icons.iconarchive.com/icons/hopstarter/button/24/Button-Delete-icon.png"/></td></tr>');
+      $('.blanketRow').off();
+      $('.blanketRow').on('click', function(){
+        (this).remove();
+        blanket.deleteSupply();
+        updateSubtotal();
+      }); 
+      blanket.addSupply();
+      updateSubtotal();
     });
 
-    $('#mapsPhoto').mouseenter(function(){
-      $('#mapsPhoto').fadeTo('fast',0);
-      $('#maps').show();
+//This opens each menu item when you click on it to see the supplies in that category
+    $('.navigationHead').click(function(){
+      $('.navigation').toggle('slide');
     });
-    $('#mapsPhoto').mouseout(function(){
-      $('#mapsPhoto').fadeTo('fast',1);
-      $('#maps').hide();
+    $('.sunProtectionHead').click(function(){
+      $('.sunProtection').toggle('slide');
+    });
+    $('.insulationHead').click(function(){
+      $('.insulation').toggle('slide');
+    });
+    $('.illuminationHead').click(function(){
+      $('.illumination').toggle('slide');
+    });
+    $('.firstAidSuppliesHead').click(function(){
+      $('.firstAidSupplies').toggle('slide');
+    });
+    $('.fireHead').click(function(){
+      $('.fire').toggle('slide');
+    });
+    $('.toolsHead').click(function(){
+      $('.tools').toggle('slide');
+    });
+    $('.nutritionHead').click(function(){
+      $('.nutrition').toggle('slide');
+    });
+    $('.hydrationHead').click(function(){
+      $('.hydration').toggle('slide');
+    });
+    $('.shelterHead').click(function(){
+      $('.shelter').toggle('slide');
     });
 //These show the description and hide the photo of each supply when you put the mouse over it
 //and remove that description and show the photo when you remove the mouse
+    $('#mapsPhoto').mouseenter(function(){
+      $('#mapsPhoto').fadeTo('fast',0);
+      $('#maps').fadeTo('fast',1);
+    });
+    $('#mapsPhoto').mouseout(function(){
+      $('#mapsPhoto').fadeTo('fast',1);
+      $('#maps').fadeTo('fast',0);
+    });
     $('#compassPhoto').mouseenter(function(){
       $('#compassPhoto').fadeTo('fast',0);
-      $('#compass').show();
+      $('#compass').fadeTo('fast',1);
     });
     $('#compassPhoto').mouseout(function(){
       $('#compassPhoto').fadeTo('fast',1);
-      $('#compass').hide();
+      $('#compass').fadeTo('fast',0);
     });
-
     $('#gpsPhoto').mouseenter(function(){
       $('#gpsPhoto').fadeTo('fast',0);
-      $('#gps').show();
+      $('#gps').fadeTo('fast',1);
     });
     $('#gpsPhoto').mouseout(function(){
       $('#gpsPhoto').fadeTo('fast',1);
-      $('#gps').hide();
+      $('#gps').fadeTo('fast',0);
     });
-
     $('#sunscreenPhoto').mouseenter(function(){
       $('#sunscreenPhoto').fadeTo('fast',0);
-      $('#sunscreen').show();
+      $('#sunscreen').fadeTo('fast',1);
     });
     $('#sunscreenPhoto').mouseout(function(){
       $('#sunscreenPhoto').fadeTo('fast',1);
-      $('#sunscreen').hide();
+      $('#sunscreen').fadeTo('fast',0)
     });
-
     $('#lipBalmPhoto').mouseenter(function(){
       $('#lipBalmPhoto').fadeTo('fast',0);
-      $('#lipBalm').show();
+      $('#lipBalm').fadeTo('fast',1);
     });
     $('#lipBalmPhoto').mouseout(function(){
       $('#lipBalmPhoto').fadeTo('fast',1);
-      $('#lipBalm').hide();
+      $('#lipBalm').fadeTo('fast',0);
     });  
-
     $('#sunglassesPhoto').mouseenter(function(){
       $('#sunglassesPhoto').fadeTo('fast',0);
-      $('#sunglasses').show();
+      $('#sunglasses').fadeTo('fast',1);
     });
     $('#sunglassesPhoto').mouseout(function(){
       $('#sunglassesPhoto').fadeTo('fast',1);
-      $('#sunglasses').hide();
+      $('#sunglasses').fadeTo('fast',0);
     });
-
     $('#jacketPhoto').mouseenter(function(){
       $('#jacketPhoto').fadeTo('fast',0);
-      $('#jacket').show();
+      $('#jacket').fadeTo('fast',1);
     });
     $('#jacketPhoto').mouseout(function(){
       $('#jacketPhoto').fadeTo('fast',1);
-      $('#jacket').hide();
+      $('#jacket').fadeTo('fast',0);
     });
-
     $('#pantsPhoto').mouseenter(function(){
       $('#pantsPhoto').fadeTo('fast',0);
-      $('#pants').show();
+      $('#pants').fadeTo('fast',1);
     });
     $('#pantsPhoto').mouseout(function(){
       $('#pantsPhoto').fadeTo('fast',1);
-      $('#pants').hide();
+      $('#pants').fadeTo('fast',0);
     });
-
     $('#glovesPhoto').mouseenter(function(){
       $('#glovesPhoto').fadeTo('fast',0);
-      $('#gloves').show();
+      $('#gloves').fadeTo('fast',1);
     });
     $('#glovesPhoto').mouseout(function(){
       $('#glovesPhoto').fadeTo('fast',1);
-      $('#gloves').hide();
+      $('#gloves').fadeTo('fast',0);
     });
-
     $('#hatPhoto').mouseenter(function(){
       $('#hatPhoto').fadeTo('fast',0);
-      $('#hat').show();
+      $('#hat').fadeTo('fast',1);
     });
     $('#hatPhoto').mouseout(function(){
       $('#hatPhoto').fadeTo('fast',1);
-      $('#hat').hide();
+      $('#hat').fadeTo('fast',0);
     });
-
     $('#flashlightPhoto').mouseenter(function(){
       $('#flashlightPhoto').fadeTo('fast',0);
-      $('#flashlight').show();
+      $('#flashlight').fadeTo('fast',1);
     });
     $('#flashlightPhoto').mouseout(function(){
       $('#flashlightPhoto').fadeTo('fast',1);
-      $('#flashlight').hide();
+      $('#flashlight').fadeTo('fast',0);
     });
-
     $('#batteryPhoto').mouseenter(function(){
       $('#batteryPhoto').fadeTo('fast',0);
-      $('#battery').show();
+      $('#battery').fadeTo('fast',1);
     });
     $('#batteryPhoto').mouseout(function(){
       $('#batteryPhoto').fadeTo('fast',1);
-      $('#battery').hide();
+      $('#battery').fadeTo('fast',0);
     });
-
     $('#firstAidPhoto').mouseenter(function(){
       $('#firstAidPhoto').fadeTo('fast',0);
-      $('#firstAid').show();
+      $('#firstAid').fadeTo('fast',1);
     });
     $('#firstAidPhoto').mouseout(function(){
       $('#firstAidPhoto').fadeTo('fast',1);
-      $('#firstAid').hide();
+      $('#firstAid').fadeTo('fast',0);
     });
-
     $('#matchesPhoto').mouseenter(function(){
       $('#matchesPhoto').fadeTo('fast',0);
-      $('#matches').show();
+      $('#matches').fadeTo('fast',1);
     });
     $('#matchesPhoto').mouseout(function(){
       $('#matchesPhoto').fadeTo('fast',1);
-      $('#matches').hide();
+      $('#matches').fadeTo('fast',0);
     });
-
     $('#firestarterPhoto').mouseenter(function(){
       $('#firestarterPhoto').fadeTo('fast',0);
-      $('#firestarter').show();
+      $('#firestarter').fadeTo('fast',1);
     });
     $('#firestarterPhoto').mouseout(function(){
       $('#firestarterPhoto').fadeTo('fast',1);
-      $('#firestarter').hide();
+      $('#firestarter').fadeTo('fast',0);
     });
-
     $('#multitoolPhoto').mouseenter(function(){
       $('#multitoolPhoto').fadeTo('fast',0);
-      $('#multitool').show();
+      $('#multitool').fadeTo('fast',1);
     });
     $('#multitoolPhoto').mouseout(function(){
       $('#multitoolPhoto').fadeTo('fast',1);
-      $('#multitool').hide();
+      $('#multitool').fadeTo('fast',0);
     });
-
     $('#tapePhoto').mouseenter(function(){
       $('#tapePhoto').fadeTo('fast',0);
-      $('#tape').show();
+      $('#tape').fadeTo('fast',1);
     });
     $('#tapePhoto').mouseout(function(){
       $('#tapePhoto').fadeTo('fast',1);
-      $('#tape').hide();
+      $('#tape').fadeTo('fast',0);
     });
-
     $('#foodPhoto').mouseenter(function(){
       $('#foodPhoto').fadeTo('fast',0);
-      $('#food').show();
+      $('#food').fadeTo('fast',1);
     });
     $('#foodPhoto').mouseout(function(){
       $('#foodPhoto').fadeTo('fast',1);
-      $('#food').hide();
+      $('#food').fadeTo('fast',0);
     });
-
     $('#waterBottlePhoto').mouseenter(function(){
       $('#waterBottlePhoto').fadeTo('fast',0);
-      $('#waterBottle').show();
+      $('#waterBottle').fadeTo('fast',1);
     });
     $('#waterBottlePhoto').mouseout(function(){
       $('#waterBottlePhoto').fadeTo('fast',1);
-      $('#waterBottle').hide();
+      $('#waterBottle').fadeTo('fast',0);
     });
-
     $('#filterPhoto').mouseenter(function(){
       $('#filterPhoto').fadeTo('fast',0);
-      $('#filter').show();
+      $('#filter').fadeTo('fast',1);
     });
     $('#filterPhoto').mouseout(function(){
       $('#filterPhoto').fadeTo('fast',1);
-      $('#filter').hide();
+      $('#filter').fadeTo('fast',0);
     });
-
     $('#tentPhoto').mouseenter(function(){
       $('#tentPhoto').fadeTo('fast',0);
-      $('#tent').show();
+      $('#tent').fadeTo('fast',1);
     });
     $('#tentPhoto').mouseout(function(){
       $('#tentPhoto').fadeTo('fast',1);
-      $('#tent').hide();
+      $('#tent').fadeTo('fast',0);
     });
-
     $('#tarpPhoto').mouseenter(function(){
       $('#tarpPhoto').fadeTo('fast',0);
-      $('#tarp').show();
+      $('#tarp').fadeTo('fast',1);
     });
     $('#tarpPhoto').mouseout(function(){
       $('#tarpPhoto').fadeTo('fast',1);
-      $('#tarp').hide();
+      $('#tarp').fadeTo('fast',0);
     });
-
     $('#blanketPhoto').mouseenter(function(){
       $('#blanketPhoto').fadeTo('fast',0);
-      $('#blanket').show();
+      $('#blanket').fadeTo('fast',1);
     });
     $('#blanketPhoto').mouseout(function(){
       $('#blanketPhoto').fadeTo('fast',1);
-      $('#blanket').hide();
+      $('#blanket').fadeTo('fast',0);
     });
 //This lets you know whether the combined usefulness of the supplies is greater than
 //the danger of the park and tells you the outcome when you push the button.
     $('.findOut').click(function(){
-      if(parkDanger>0) {
-        $('.result').append('<p>No, you will not survive.  Please buy more supplies.</p>')
-      } else {
-        $('.result').append('<p>Yes!  Have fun on your trip. You spent $' + totalCost + ' dollars.</p>')
+      console.log(totalUsefulness);
+      if(parkDanger>=totalUsefulness) {
+        $('.result').replaceWith('<p class="result">No, you will not survive.  Please buy more supplies.</p>')
+      } else if((parkDanger<totalUsefulness) && ((budget-totalCost)>0)) {
+        $('.result').replaceWith('<p class="result">Yes!  Have fun on your trip. You spent $' + totalCost.toFixed(2) + ' dollars.</p>')
+      } else if ((parkDanger<totalUsefulness) && ((budget-totalCost)<0)) {
+        $('.result').replaceWith('<p class="result">Yes, but you don\'t have enough money for all these supplies.  You need at least\ $' + totalCost.toFixed(2) + ' total.</p>')
       };
     });
 

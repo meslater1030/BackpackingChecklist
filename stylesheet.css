@@ -25,6 +25,7 @@ p {
   font-size:1.2em;
   background-color: transparent;
 }
+
 img {
   width:250px;
   height:200px;
@@ -32,36 +33,58 @@ img {
   display: inline;
   border: 1px solid black;
 }
+
+input {
+  margin: 1em;
+}
+
+table {
+  width: 15em;
+}
+
 /*This removes all bullets from unordered lists*/
 ul {
   list-style-type:none; 
 }
 /*This makes all the buttons big with a fun font and adds padding*/
 button {
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: 'Oswald', sans-serif;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  padding-left: 1em;
-  padding-right: 1em;
-  width: 12em;
+  padding: 0.5em;
+  width: 10em;
 }
+
+a img {
+  border: none;
+  height: 4em;
+  width: 7em;
+  padding: 1em;
+}
+
 /*The top section of the page is called location.  This centers the text and adds padding.*/
 .location {
   height: auto;
   padding:1em;
   text-align:center;
 }
-/*This positions the photos in the top section of the page so that they appear in rows
+
+/*The parkTextOverlay class is only connected to elements inside the location class.
+This will show a blue line around the picture of the park when the mouse 
+hovers over that picture */
+.parkTextOverlay img:hover {
+  outline: 3px solid #5DAEF0;
+}
+
+/*This positions the photos of the parks so that they appear in rows
 and sets up the position for the next element. */
-.wordOverlay {
+.parkTextOverlay {
   position:relative;
   width: 100%;
   display: inline;
 }
-/*this puts the text associated with the park and puts it on top of the 
+/*this puts the text associated with the park on top of the 
 picture of that park */
-.wordOverlay p {
+.parkTextOverlay p {
   position:absolute;
   top:-10px;
   left:0;
@@ -69,6 +92,28 @@ picture of that park */
   font-size:1em;
   color: white;
   background-color: transparent;
+}
+
+/*This creates a hole in the page so you can see the background photo through it in the breaks between other sections.
+It also essentially adds a border around the text so that text stands out */
+.photoWindow {
+  height: auto;
+  color:white;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+  background-color: transparent;
+  text-align:center;
+  font-family: 'Oswald', sans-serif;
+  padding: 1.2em;
+}
+
+/*here are all the styling elements for the chooseItems class*/
+.chooseItems img {
+  width: 150px;
+  height: 120px;
 }
 
 .chooseItems ul li button {
@@ -88,24 +133,9 @@ that supply */
   top:-6em;
   left:0;
   width: 100%;
-  font-size:1em;
+  font-size:.75em;
   color: black;
   background-color: transparent;
-}
-/*This creates a hole in the page so you can see the background photo through it.
-It also essentially adds a border around the text so that text stands out */
-.photoWindow {
-  height: auto;
-  color:white;
-  text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;  
-  background-color: transparent;
-  text-align:center;
-  font-family: 'Oswald', sans-serif;
-  padding: 1.2em;
 }
 
 .chooseItems {
@@ -113,38 +143,65 @@ It also essentially adds a border around the text so that text stands out */
 }
 /*This decreases the size of the plus image and removes the default border for images.*/
 .chooseItems ul li button img {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   border: none;
 }
-/*This positions the aside on the right of the page and gives it some padding
- and a border*/
-.itemsChosen {
-  width: 15em;
-  padding: 1em;
-  margin-left: 1em;
-  margin-bottom: 1em;
-  background-color:#d3d3d3;
-  border-left: 1px solid grey;
-  border-bottom: 1px solid grey;
-  float: right;
-  display: inline; 
+
+#budgetButton {
+  width: 5em;
+  height: 2em;
+  padding: 0em .5em 0em .5em;
+  font-size: 1em;
+  font-family: 'arial';
 }
 
-.itemsChosen p {
-  background-color:#d3d3d3;
+/*This positions the items Chosen aside on the right of the page and gives it some padding,
+a border and a scroll bar if it gets too big.*/
+.itemsChosen {
+  width: 16em;
+  padding: 1em 1em 1em 1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  background-color:white;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+  box-shadow: -2px 4px 7px 2px #ccc;
+  position: fixed;
+  top:0px;
+  right:0px;
+  display: inline; 
+  overflow-y: scroll; 
+  max-height: 90%;
 }
 
 .itemsChosen table {
-  background-color: #d3d3d3;
   border: 1px solid black;
 }
 
 .itemsChosen table tr td {
-  background-color:#d3d3d3;
   font-size: 1em;
-  border: 7px solid #d3d3d3;
+  border: 7px solid white;
 }
+
+#supplies img {
+  height: 15px;
+  width: 15px;
+  border: none;
+}
+
+#subtotal {
+  font-weight: bold;
+}
+
+/*These elements style the submit section.
+This adds some padding to the submit class*/
+.submit {
+  height: auto;
+  padding-top: 2em;
+  padding-bottom: 3em;
+} 
+
 /*This makes the submit button fancy and a different size than the default button. 
 It also places it on the left of the page so results are posted to the right. */
 .findOut button {
@@ -160,11 +217,3 @@ It also places it on the left of the page so results are posted to the right. */
   margin-left: 2em;
   margin-bottom: 1em;
 }
-
-.submit {
-  height: auto;
-  padding-top: 2em;
-  padding-bottom: 3em;
-} 
-
-

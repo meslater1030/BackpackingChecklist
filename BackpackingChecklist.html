@@ -1,235 +1,273 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link type="text/css" rel="stylesheet" href="stylesheet.css" />
-  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-  <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css'/>
-  <title>Backpacking Checklist</title>
-</head>
-<body>
-  <section class="location">
-    <h1>Take an Adventure</h1>
-    <p>Plan your perfect backpacking getaway with our trip advisor to see how much <br/>
-      you can plan to spend and what you need to survive in the wild.</p>
-      <br/>
-    <p> Where do you want to go?</p>
-    <br/>
-<!--Here are all the parks and their names -->
-    <ul>
-      <li class="wordOverlay">
-      <img id="yellowstone" src="http://images.nationalgeographic.com/wpf/media-live/photos/000/020/cache/yellowstone-fountain-geyser_2018_600x450.jpg" />
-      <p>Yellowstone National Park</p>
-      </li>
-      <li class="wordOverlay">
-      <img id="glacier" src="http://static1.squarespace.com/static/52420833e4b06209130ccc07/t/54473135e4b02f2eeab98156/1413951802688/100daysinGlacierNationalPark.jpg" />
-      <p>Glacier National Park</p>
-      </li>
-      <li class="wordOverlay">
-      <img id="olympic" src="http://www.naturallyamazing.com/americasparks/6269.jpg" />
-      <p>Olympic National Forest</p>
-      </li>
-    </ul>
-    <ul>
-      <li class="wordOverlay">
-      <img id="yosemite" src="http://www.yosemitepark.com/Images/home-img-01.jpg">
-      <p>Yosemite National Park</p>
-      </li>
-      <li class="wordOverlay">
-      <img id="grandCanyon" src="http://www.crystalinks.com/grandcanyon700.jpg" />
-      <p>The Grand Canyon</p>
-      </li>
-      <li class="wordOverlay">
-      <img id="zion" src="http://images.nationalgeographic.com/wpf/media-live/photos/000/512/overrides/zion-national-park-subway-emerald-water-pool_51258_600x450.jpg">
-      <p>Zion National Park</p>
-      </li>
-    </ul>
-  </section>
-
-  <aside class="photoWindow">
-    <h1>Buy the Right Supplies</h1>
-  </aside>
-<!-- Here's the aside where each supply that's been bought will show up when clicked -->
-    <figure class="itemsChosen">
-      <div class="destination">
-      <u><p>You have decided to go to<br/></p></u>
-      </div>
+  <head>
+    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css'/>
+    <title>Backpacking Checklist</title>
+  </head>
+  <body>
+    <section class="location">
+      <h1>Take an Adventure</h1>
+      <p>Plan your perfect backpacking getaway with our trip advisor to see how much <br/>
+        you can plan to spend and what you need to survive in the wild.</p>
         <br/>
-        <u><p>You have decided to buy</p></u>
+      <p> Where do you want to go?</p>
+      <br/>
+  <!--Here are all the parks and their names -->
+      <ul>
+        <li class="parkTextOverlay">
+        <img id="yellowstone" src="http://images.nationalgeographic.com/wpf/media-live/photos/000/020/cache/yellowstone-fountain-geyser_2018_600x450.jpg" />
+        <p>Yellowstone National Park</p>
+        </li>
+        <li class="parkTextOverlay">
+        <img id="glacier" src="http://static1.squarespace.com/static/52420833e4b06209130ccc07/t/54473135e4b02f2eeab98156/1413951802688/100daysinGlacierNationalPark.jpg" />
+        <p>Glacier National Park</p>
+        </li>
+        <li class="parkTextOverlay">
+        <img id="olympic" src="http://www.naturallyamazing.com/americasparks/6269.jpg" />
+        <p>Olympic National Forest</p>
+        </li>
+      </ul>
+      <ul>
+        <li class="parkTextOverlay">
+        <img id="yosemite" src="http://www.yosemitepark.com/Images/home-img-01.jpg">
+        <p>Yosemite National Park</p>
+        </li>
+        <li class="parkTextOverlay">
+        <img id="grandCanyon" src="http://www.crystalinks.com/grandcanyon700.jpg" />
+        <p>The Grand Canyon</p>
+        </li>
+        <li class="parkTextOverlay">
+        <img id="zion" src="http://images.nationalgeographic.com/wpf/media-live/photos/000/512/overrides/zion-national-park-subway-emerald-water-pool_51258_600x450.jpg">
+        <p>Zion National Park</p>
+        </li>
+      </ul>
+      <a href="#down"> <img class="arrow" src="http://www.clker.com/cliparts/C/C/t/u/L/0/arrow-down-gray-hi.png" /></a>
+    </section>
+
+    <aside class="photoWindow">
+      <a name="down"><h1>Buy the Right Supplies</h1></a>
+    </aside>
+  <!-- Here's the figure where each supply that's been bought will show up when clicked -->
+    <figure class="itemsChosen">
+      <p>Destination<br/></p>
+      <p class="destination"></p>
+        <br/>
+        <p>Invoice</p>
         <br/>
         <table id="supplies">
+          <thead>
+            <td><b>Item</b></td>
+            <td><b>Cost</b></td>
+          </thead>
+        </table>
+        <table>
           <tr>
-            <td>Item</td>
-            <td>Cost</td>
+            <td><b>Remaining Funds</b></td>
+            <td id="subtotal">$0</td>
           </tr>
         </table>
     </figure>
-<!-- Here are all the available supplies -->
+  <!-- Here are all the available supplies -->
     <section class="chooseItems">
+      <p>What is your budget?</p>
+      <form id="userMoney">
+        <input type="number" placeholder="$0.00" value="0"></input>
+        <button id="budgetButton" type="submit">Update</button>
+      </form>
       <p>Which supplies would you like to buy?</p><br/>
-    <ul>
-      <li><button class="navigationHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Navigation</button></li> 
-      <ul class="navigation">
+      <ul>
         <li>
-            <p id="maps">Trail Maps<br/>
-            $20.95</p>
+          <button class="navigationHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Navigation
+          </button>
+        </li> 
+        <ul class="navigation">
+          <li>
+            <p id="maps">Trail Maps<br/>$20.95</p>
             <img id="mapsPhoto" src="http://www.rei.com/zoom/602062/230" />
+          </li>
+          <li>
+            <p id="compass">Suunto M-3D Leader Compass<br/>$35.00</p>
+            <img id="compassPhoto" src="http://www.rei.com/zoom/408150/230" />
+          </li>
+          <li> 
+            <p id="gps">Garmin Fenix 3 Sapphire GPS Watch<br/>$600.00</p>
+            <img id="gpsPhoto" src="http://www.rei.com/zoom/884616/230" />
+          </li>
+        </ul>
+        <li>
+          <button class="sunProtectionHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Sun Protection
+          </button>
         </li>
+        <ul class="sunProtection">
+          <li>
+            <p id="sunscreen">Sawyer Stay-Put System 1 Sunscreen<br/>$12.00</p>
+            <img id="sunscreenPhoto" src="http://www.rei.com/zoom/842872/230" />
+          </li> 
+          <li>
+            <p id="lipBalm">Kiss My Face Treatmint Lip Balm SPF 30<br/>$3.50</p>
+            <img id="lipBalmPhoto" src="http://www.rei.com/zoom/850890/230" />
+          </li> 
+          <li>
+            <p id="sunglasses">Oakley Flack Jacket Sunglasses<br/>$150.00</p>
+            <img id="sunglassesPhoto" src="http://www.rei.com/zoom/784788/230" />
+          </li> 
+        </ul>
         <li>
-          <p id="compass">Suunto M-3D Leader Compass<br/>
-          $35.00</p>
-          <img id="compassPhoto" src="http://www.rei.com/zoom/408150/230" />
+          <button class="insulationHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Insulation
+          </button>
         </li>
-        <li> 
-          <p id="gps">Garmin Fenix 3 Sapphire GPS Watch<br/>
-          $600.00</p>
-          <img id="gpsPhoto" src="http://www.rei.com/zoom/884616/230" />
+        <ul class="insulation">
+          <li>
+            <p id="jacket">Sierra Designs DriDown Rain Jacket<br/>$148.83</p>
+            <img id="jacketPhoto" src="http://www.rei.com/zoom/872322/230" />
+          </li> 
+          <li>
+            <p id="pants">The North Face ThermoBall Snow Pants<br/>$148.93</p>
+            <img id="pantsPhoto" src="http://www.rei.com/zoom/872203/230" />
+          </li> 
+          <li>
+            <p id="gloves">POW Insulated Gloves<br/>$36.83</p>
+            <img id="glovesPhoto" src="http://www.rei.com/zoom/871344/230" />
+          </li>
+          <li>
+            <p id="hat">Mountain Hardwear Dome Perignon<br/>$36.00</p>
+            <img id="hatPhoto" src="http://www.rei.com/zoom/835052/230" />
+          </li> 
+        </ul>
+        <li>
+          <button class="illuminationHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Illumination
+          </button>
         </li>
-      </ul>
-      <li><button class="sunProtectionHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Sun Protection</button></li>
-      <ul class="sunProtection">
+        <ul class="illumination">
+          <li>
+            <p id="flashlight">Nitecore SRTS Flashlight<br/>$70.93</p>
+            <img id="flashlightPhoto" src="http://www.rei.com/zoom/867460/230" />
+          </li> 
+          <li>
+            <p id="battery">Nitecore Rechargeable Battery<br/>$21.00</p>
+            <img id="batteryPhoto" src="http://www.rei.com/zoom/861278/230" />
+          </li> 
+        </ul>
         <li>
-          <p id="sunscreen">Sawyer Stay-Put System 1 Sunscreen<br/>
-          $12.00</p>
-          <img id="sunscreenPhoto" src="http://www.rei.com/zoom/842872/230" />
-        </li> 
-        <li>
-          <p id="lipBalm">Kiss My Face Treatmint Lip Balm SPF 30<br/>
-          $3.50</p>
-          <img id="lipBalmPhoto" src="http://www.rei.com/zoom/850890/230" />
-        </li> 
-        <li>
-          <p id="sunglasses">Oakley Flack Jacket Sunglasses<br/>
-          $150.00</p>
-          <img id="sunglassesPhoto" src="http://www.rei.com/zoom/784788/230" />
-        </li> 
-      </ul>
-      <li><button class="insulationHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Insulation</button></li>
-      <ul class="insulation">
-        <li>
-          <p id="jacket">Sierra Designs DriDown Rain Jacket<br/>
-          $148.83</p>
-          <img id="jacketPhoto" src="http://www.rei.com/zoom/872322/230" />
-        </li> 
-        <li>
-          <p id="pants">The North Face ThermoBall Snow Pants<br/>
-          $148.93</p>
-          <img id="pantsPhoto" src="http://www.rei.com/zoom/872203/230" />
-        </li> 
-        <li>
-          <p id="gloves">POW Insulated Gloves<br/>
-          $36.83</p>
-          <img id="glovesPhoto" src="http://www.rei.com/zoom/871344/230" />
+          <button class="firstAidSuppliesHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            First-aid Supplies
+          </button>
         </li>
+        <ul class="firstAidSupplies">
+          <li>
+            <p id="firstAid">Backpacker Extended First-Aid Kit<br/>$54.50</p>
+            <img id="firstAidPhoto" src="http://www.rei.com/zoom/867437/230" />
+          </li> 
+        </ul>
         <li>
-          <p id="hat">Mountain Hardwear Dome Perignon<br/>
-          $36.00</p>
-          <img id="hatPhoto" src="http://www.rei.com/zoom/835052/230" />
-        </li> 
-      </ul>
-      <li><button class="illuminationHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Illumination</button></li>
-      <ul class="illumination">
+          <button class="fireHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Fire
+          </button>
+        </li>
+        <ul class="fire">
+          <li>
+            <p id="matches">UCO Stormproof Match Kit<br/>$6.95</p>
+            <img id="matchesPhoto" src="http://www.rei.com/zoom/820267/230" />
+          </li> 
+          <li>
+            <p id="firestarter">Exotac NanoStriker XL Firestarter<br/>$32.95</p>
+            <img id="firestarterPhoto" src="http://www.rei.com/zoom/842504/230" />
+          </li> 
+        </ul>
         <li>
-          <p id="flashlight">Nitecore SRTS Flashlight<br/>
-          $70.93</p>
-          <img id="flashlightPhoto" src="http://www.rei.com/zoom/867460/230" />
-        </li> 
+          <button class="toolsHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Tools
+          </button>
+        </li>
+        <ul class="tools">
+          <li>
+            <p id="multitool">Leatherman New Wave Multitool<br/>$89.95</p>
+            <img id="multitoolPhoto" src="http://www.rei.com/zoom/715771/230" />
+          </li> 
+          <li>
+            <p id="tape">Duct Tape - 1" Wide Roll<br/>$10.00</p>
+            <img id="tapePhoto" src="http://www.rei.com/zoom/738679/230" />
+          </li> 
+        </ul>
         <li>
-          <p id="battery">Nitecore Rechargeable Battery<br/>
-          $21.00</p>
-          <img id="batteryPhoto" src="http://www.rei.com/zoom/861278/230" />
-        </li> 
-      </ul>
-      <li><button class="firstAidSuppliesHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> First-aid Supplies</button></li>
-      <ul class="firstAidSupplies">
+          <button class="nutritionHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Nutrition
+          </button>
+        </li>
+        <ul class="nutrition">
+          <li>
+            <p id="food">Assorted Freeze-Dried Food Bucket<br/>$90.00</p>
+            <img id="foodPhoto" src="http://www.rei.com/zoom/865600/230" />
+          </li> 
+        </ul>
         <li>
-          <p id="firstAid">Backpacker Extended First-Aid Kit<br/>
-          $54.50</p>
-          <img id="firstAidPhoto" src="http://www.rei.com/zoom/867437/230" />
-        </li> 
-      </ul>
-      <li><button class="fireHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Fire</button></li>
-      <ul class="fire">
+          <button class="hydrationHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Hydration
+          </button>
+        </li>
+        <ul class="hydration">
+          <li>
+            <p id="waterBottle">Nalgene Wide-Mouth Loop-Top Water Bottle<br/>$10.50</p>
+            <img id="waterBottlePhoto" src="http://www.rei.com/zoom/852355/230" />
+          </li> 
+          <li>
+            <p id="filter">Katadyn Hiker PRO Water Filter<br/>$84.95</p>
+            <img id="filterPhoto" src="http://www.rei.com/zoom/830745/230" />
+          </li> 
+        </ul>
         <li>
-          <p id="matches">UCO Stormproof Match Kit<br/>
-          $6.95</p>
-          <img id="matchesPhoto" src="http://www.rei.com/zoom/820267/230" />
-        </li> 
-        <li>
-          <p id="firestarter">Exotac NanoStriker XL Firestarter<br/>
-          $32.95</p>
-          <img id="firestarterPhoto" src="http://www.rei.com/zoom/842504/230" />
-        </li> 
-      </ul>
-      <li><button class="toolsHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Tools</button></li>
-      <ul class="tools">
-        <li>
-          <p id="multitool">Leatherman New Wave Multitool<br/>
-          $89.95</p>
-          <img id="multitoolPhoto" src="http://www.rei.com/zoom/715771/230" />
-        </li> 
-        <li>
-          <p id="tape">Duct Tape - 1" Wide Roll<br/>
-          $10.00</p>
-          <img id="tapePhoto" src="http://www.rei.com/zoom/738679/230" />
-        </li> 
-      </ul>
-      <li><button class="nutritionHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Nutrition</button></li>
-      <ul class="nutrition">
-        <li>
-          <p id="food">Assorted Freeze-Dried Food Bucket<br/>
-          $90.00</p>
-          <img id="foodPhoto" src="http://www.rei.com/zoom/865600/230" />
-        </li> 
-      </ul>
-      <li><button class="hydrationHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Hydration</button></li>
-      <ul class="hydration">
-        <li>
-          <p id="waterBottle">Nalgene Wide-Mouth Loop-Top Water Bottle<br/>
-          $10.50</p>
-          <img id="waterBottlePhoto" src="http://www.rei.com/zoom/852355/230" />
-        </li> 
-        <li>
-          <p id="filter">Katadyn Hiker PRO Water Filter<br/>
-          $84.95</p>
-          <img id="filterPhoto" src="http://www.rei.com/zoom/830745/230" />
-        </li> 
-      </ul>
-      <li><button class="shelterHead"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> Emergency Shelter</button></li>
-      <ul class="shelter">
-        <li>
-          <p id="tent">Kelty Gunnison 4.2 Tent<br/>
-          $199.93</p>
-          <img id="tentPhoto" src="http://www.rei.com/zoom/847635/230" />
-        </li> 
-        <li>
-          <p id="tarp">Noah's Tarp - 12' x 12'<br/>
-          $69.95</p>
-          <img id="tarpPhoto" src="http://www.rei.com/zoom/808940/230" />
-        </li> 
-        <li>
-          <p id="blanket">Space All-Weather Blanket<br/>
-          $16.95</p>
-          <img id="blanketPhoto" src="http://www.rei.com/zoom/407106/230" />
-        </li> 
+          <button class="shelterHead">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png" /> 
+            Emergency Shelter
+          </button>
+        </li>
+        <ul class="shelter">
+          <li>
+            <p id="tent">Kelty Gunnison 4.2 Tent<br/>$199.93</p>
+            <img id="tentPhoto" src="http://www.rei.com/zoom/847635/230" />
+          </li> 
+          <li>
+            <p id="tarp">Noah's Tarp - 12' x 12'<br/>$69.95</p>
+            <img id="tarpPhoto" src="http://www.rei.com/zoom/808940/230" />
+          </li> 
+          <li>
+            <p id="blanket">Space All-Weather Blanket<br/>$16.95</p>
+            <img id="blanketPhoto" src="http://www.rei.com/zoom/407106/230" />
+          </li> 
+        </ul> 
       </ul> 
-    </ul> 
-  </section>
-
-  <aside class="photoWindow">
-    <h1>Will You Survive?</h1>
-  </aside>
-<!-- Here's the final section that will show whether the user has chosen enough supplies -->
-  <section class="submit">
-    <section class="findOut">
-    <button>
-      Find Out
-    </button>
     </section>
-    <section class="result">
-    </section>
-  </section>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="app.js"></script>
-</body>
+    <aside class="photoWindow">
+      <h1>Will You Survive?</h1>
+    </aside>
+  <!-- Here's the final section that will show whether the user has chosen enough supplies -->
+    <section class="submit">
+      <section class="findOut">
+      <button>
+        Find Out
+      </button>
+      </section>
+      <section class="result">
+      </section>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
