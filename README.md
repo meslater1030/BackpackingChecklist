@@ -1,3 +1,3 @@
 # BackpackingChecklist
-Backpacking Trip Advisor
+Backpacking Trip to do list creator
 Written by Megan Slater.

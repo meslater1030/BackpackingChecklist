@@ -27,8 +27,8 @@ p {
 }
 
 img {
-  width:250px;
-  height:200px;
+  width:170px;
+  height:150px;
   border-radius: 15px;
   display: inline;
   border: 1px solid black;
@@ -46,12 +46,13 @@ table {
 ul {
   list-style-type:none; 
 }
-/*This makes all the buttons big with a fun font and adds padding*/
+
 button {
-  font-size: 1.5em;
-  font-family: 'Oswald', sans-serif;
-  padding: 0.5em;
-  width: 10em;
+  width: 5em;
+  height: 2em;
+  padding: 0em .5em 0em .5em;
+  font-size: 1em;
+  font-family: 'arial';
 }
 
 a img {
@@ -89,7 +90,7 @@ picture of that park */
   top:-10px;
   left:0;
   width: 100%;
-  font-size:1em;
+  font-size:0.85em;
   color: white;
   background-color: transparent;
 }
@@ -110,24 +111,9 @@ It also essentially adds a border around the text so that text stands out */
   padding: 1.2em;
 }
 
-/*here are all the styling elements for the chooseItems class*/
-.chooseItems img {
-  width: 150px;
-  height: 120px;
-}
-
-.chooseItems ul li button {
-  text-align: left;
-}
-.chooseItems ul ul li {
-  position:relative;
-  width: 100%;
-  display: inline;
-  text-align: center;
-}
 /* this puts the text associated with the supply and puts it on top of the picture of 
 that supply */
-.chooseItems ul ul li p {
+.createToDo ul ul li p {
   position:absolute;
   font-weight: bold;
   top:-6em;
@@ -138,27 +124,14 @@ that supply */
   background-color: transparent;
 }
 
-.chooseItems {
+.createToDo {
+  text-align: center;
   padding: 1em
-}
-/*This decreases the size of the plus image and removes the default border for images.*/
-.chooseItems ul li button img {
-  width: 20px;
-  height: 20px;
-  border: none;
-}
-
-#budgetButton {
-  width: 5em;
-  height: 2em;
-  padding: 0em .5em 0em .5em;
-  font-size: 1em;
-  font-family: 'arial';
 }
 
 /*This positions the items Chosen aside on the right of the page and gives it some padding,
 a border and a scroll bar if it gets too big.*/
-.itemsChosen {
+.interactiveList {
   width: 16em;
   padding: 1em 1em 1em 1em;
   margin-left: 1em;
@@ -170,50 +143,22 @@ a border and a scroll bar if it gets too big.*/
   position: fixed;
   top:0px;
   right:0px;
-  display: inline; 
-  overflow-y: scroll; 
+  display: inline;
+  overflow-y: scroll;
   max-height: 90%;
 }
 
-.itemsChosen table {
+.interactiveList table {
   border: 1px solid black;
 }
 
-.itemsChosen table tr td {
+.interactiveList table tr td {
   font-size: 1em;
   border: 7px solid white;
 }
 
-#supplies img {
+#list img {
   height: 15px;
   width: 15px;
   border: none;
-}
-
-#subtotal {
-  font-weight: bold;
-}
-
-/*These elements style the submit section.
-This adds some padding to the submit class*/
-.submit {
-  height: auto;
-  padding-top: 2em;
-  padding-bottom: 3em;
-} 
-
-/*This makes the submit button fancy and a different size than the default button. 
-It also places it on the left of the page so results are posted to the right. */
-.findOut button {
-  float:left;
-  display: inline;
-  width: 15em;
-  margin-right: 5em;
-  font-family: 'Oswald', sans-serif;
-  width: 6em;
-  border-radius: 8px;
-  font-size: 2em;
-  box-shadow: 2px 2px 4px 5px #ccc;
-  margin-left: 2em;
-  margin-bottom: 1em;
 }
